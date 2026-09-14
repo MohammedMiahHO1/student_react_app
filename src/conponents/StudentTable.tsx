@@ -1,4 +1,5 @@
 import type { Student } from "../types/Student";
+import "./StudentTable.css";
 
 type StudentTableProps = {
     students: Student[];
@@ -6,7 +7,7 @@ type StudentTableProps = {
 
 function StudentTable({ students }: StudentTableProps) {
     return (
-        <table>
+        <table className="student-table">
             <thead>
             <tr>
                 <th>Roll No</th>
@@ -27,11 +28,11 @@ function StudentTable({ students }: StudentTableProps) {
 
                     <td>
                         {student.subjects.map((studentSubject) => (
-                            <div key={studentSubject.id}>
+                            <li key={studentSubject.id}>
                                 {studentSubject.subject.name}
                                 {" - "}
                                 Grade: {studentSubject.grade}
-                            </div>
+                            </li>
                         ))}
                     </td>
                 </tr>
