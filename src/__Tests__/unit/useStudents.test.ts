@@ -67,4 +67,19 @@ describe("useStudents", () => {
         expect(result.current.students).toEqual([]);
         expect(result.current.error).toBe("Failed to fetch students");
     });
+    test("sets default error message when error is not an Error object", async () => {
+        mockedGetAllStudents.mockRejectedValue(
+            "Something went wrong"
+        );
+
+        const { result } = renderHook(() => useStudents());
+
+        await waitFor(() => {
+            expect(result.current.loading).toBe(false);
+        });
+
+        expect(result.current.students).toEqual([]);
+        expect(result.current.error)
+            .toBe("Unable to load students");
+    });
 });
